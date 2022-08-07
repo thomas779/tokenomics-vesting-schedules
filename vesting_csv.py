@@ -1,5 +1,4 @@
 import csv
-from traceback import print_list
 from plot_chart import plt
 
 class emissionType: # constructor
