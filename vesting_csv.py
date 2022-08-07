@@ -1,4 +1,6 @@
 import csv
+from traceback import print_list
+from plot_chart import plt
 
 class emissionType: # constructor
     def __init__(self, token_quantity, start_month, lock_period, unlock_period):
@@ -14,16 +16,13 @@ def namestr(obj, namespace): # name of a variable
 private_sale = emissionType(15,0,12,24)
 marketing = emissionType(4,0,0,12)
 team = emissionType(14,0,12,36)
-
 public_sale = emissionType(10,2,12,18)
-
 community = emissionType(24,4,0,1)
-
 ecosystem = emissionType(6,24,0,12)
 chain = emissionType(6,24,0,48)
 
 # list the objects
-emissionSources = [team,community,private_sale,public_sale,marketing,ecosystem,chain]
+emissionSources = [private_sale,marketing,team,public_sale,community,ecosystem,chain]
 
 f = open("emission.txt", "w+")
 
@@ -37,6 +36,7 @@ f.write(str(header)[1:-1] + '\n')
 start_monthTotal = 60
 
 # create cumsum values
+emissionHistory = []
 for i in range(start_monthTotal):
     cumEmission = []
     DV = 0
@@ -51,9 +51,12 @@ for i in range(start_monthTotal):
     cumEmission.append(DV)
 
     f.write(str(cumEmission)[1:-1] + '\n')
+    emissionHistory.append(cumEmission)
 
 f.close()
+plt.show()
 
+# convert txt to csv file
 with open('emission.txt', 'r') as in_file:
     stripped = (line.strip() for line in in_file)
     lines = (line.split(",") for line in stripped if line)
