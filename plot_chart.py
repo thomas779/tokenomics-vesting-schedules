@@ -21,9 +21,11 @@ colors = sns.color_palette("RdBu", 7)
 labels=["private_sale", "marketing", "team", "public_sale", "community", "ecosystem", "chain"]
 plt.stackplot(month, private_sale, marketing, team, public_sale, community, ecosystem, chain, labels=labels, colors=colors)
 
-plt.legend(loc = "upper center", bbox_to_anchor=(1.1, 0.8), ncol=1)
+plt.grid(visible=None)
+plt.legend(loc = "upper center", bbox_to_anchor=(1.1, 0.8), shadow=True, ncol=1)
 plt.title('Vesting Schedule')
 plt.ylabel('Emission Percentage (%)')
-plt.xticks(np.arange(1,start_monthTotal,step=1), rotation=40)
+plt.xticks(np.arange(0,start_monthTotal,step=10), rotation=40)
 
+plt.tight_layout()
 plt.show()
